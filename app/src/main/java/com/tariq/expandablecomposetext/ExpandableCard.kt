@@ -50,7 +50,7 @@ fun ExpandableCard() {
         onClick = {
             expandedState = !expandedState
         }
-    ) {g
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
