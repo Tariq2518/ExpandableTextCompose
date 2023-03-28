@@ -97,6 +97,19 @@ fun ExpandableCard() {
                 )
             }
 
+            var text by remember {
+                mutableStateOf("Type Here....")
+            }
+
+            TextField(
+                value = text,
+                onValueChange = {
+                    text = it
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+
         }
 
     }
