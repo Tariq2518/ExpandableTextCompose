@@ -5,10 +5,7 @@ import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -21,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -101,13 +99,16 @@ fun ExpandableCard() {
                 mutableStateOf("Type Here....")
             }
 
-            TextField(
+            Spacer(modifier = Modifier.size(8.dp))
+            OutlinedTextField(
+                label = { Text(text = "Name") },
                 value = text,
                 onValueChange = {
                     text = it
                 },
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                textStyle = TextStyle.Default,
             )
 
         }
