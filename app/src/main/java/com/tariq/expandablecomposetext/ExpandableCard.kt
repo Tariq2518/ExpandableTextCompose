@@ -20,6 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -31,6 +33,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.tariq.expandablecomposetext.ui.theme.Shapes
+import com.tariq.expandablecomposetext.ui.theme.color1
+import com.tariq.expandablecomposetext.ui.theme.color2
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -148,6 +152,27 @@ fun ExpandableCard() {
                     keyboardType = KeyboardType.Password
                 )
             )
+
+            Spacer(modifier = Modifier.size(12.dp))
+
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                GradientButton(
+                    text = "Login",
+                    textColor = Color.White,
+                    gradient = Brush.horizontalGradient(
+                        colors = listOf(
+                            color1,
+                            color2
+                        )
+                    )
+                ) {
+
+                }
+            }
+
 
         }
 
