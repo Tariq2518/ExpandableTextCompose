@@ -6,13 +6,16 @@ import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -21,6 +24,9 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -96,7 +102,7 @@ fun ExpandableCard() {
             }
 
             var text by remember {
-                mutableStateOf("Type Here....")
+                mutableStateOf("")
             }
 
             Spacer(modifier = Modifier.size(8.dp))
@@ -108,7 +114,39 @@ fun ExpandableCard() {
                 },
                 modifier = Modifier
                     .fillMaxWidth(),
+                placeholder = { Text(text = "Type Here") },
+                textStyle = TextStyle.Default
+            )
+
+            var password by rememberSaveable {
+                mutableStateOf("")
+            }
+            var passwordVisibility by remember {
+                mutableStateOf(false)
+            }
+
+            Spacer(modifier = Modifier.size(12.dp))
+
+            OutlinedTextField(
+                value = password,
+                onValueChange = {
+                    password = it
+                },
+                modifier = Modifier
+                    .fillMaxWidth(),
+                placeholder = { Text(text = "Password") },
                 textStyle = TextStyle.Default,
+                label = { Text(text = "Password") },
+                trailingIcon = {
+                    IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
+                        Icon(imageVector = Icons.Default.Lock, contentDescription = "Password")
+
+                    }
+                },
+                visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation(),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password
+                )
             )
 
         }
