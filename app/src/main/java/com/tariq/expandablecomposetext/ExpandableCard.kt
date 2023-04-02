@@ -182,6 +182,6 @@ fun ExpandableCard() {
 @Composable
 @Preview
 
-fun ExpandableCardPreview() {
+private fun ExpandableCardPreview() {
     ExpandableCard()
 }
